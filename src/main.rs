@@ -2,11 +2,15 @@ use std::{
     fs,
     env,
 };
-use std::env::args;
 
 fn main() {
     let content = fs::read_to_string(get_file_to_open())
-        .expect("Error while reading the file.");
+        .expect("Error while reading the file.")
+        .chars()
+        .filter(|x| ['.', ',', '<', '>', '[', ']', '+', '-'].iter().any(|i| x == i))
+        .collect::<String>();
+
+    let (mut pointer, mut arr_vals) = (0, [0]);
 
     println!("{}", content);
 }
