@@ -19,9 +19,10 @@ fn main() {
             ']' => {
                 if arr_vals[pointer] != 0 { pos = *loops_index.last().expect("") }
                 else { let _ = loops_index.pop().expect(""); } }
-            ',' => { // Non fonctionnel, ne semble pas passer à la suite
-                let input = String::from("");
-                std::io::stdin().read_line(&mut String::from(input.trim())).expect("");
+            ',' => {
+                let mut input = String::from("");
+                std::io::stdin().read_line(&mut input).expect("");
+                input = input.trim().parse().unwrap();
                 if !input.is_ascii() { panic!("Input only accepts ASCII characters.") }
                 if input.parse::<u8>().is_ok() { arr_vals[pointer] = input.parse::<u8>().unwrap() }
                 else {
